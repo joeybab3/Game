@@ -12,7 +12,7 @@
 	
 	$D = new Database($options->getDbUsername(),$options->getDbPassword(),$options->getDbName());
 	
-	$game = new Game($D);
+	$game = new Game($D, 1);
 	
 	echo "Game Compiles\n ";
 	

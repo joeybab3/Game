@@ -4,7 +4,6 @@
     use Joeybab3\Game\Options;
     
     class Game extends GenericModel {
-	    protected $dbh;
 	    protected $isInit;
 	    protected $year;
 	    protected $number;
@@ -16,15 +15,24 @@
 		    $this->setTable("game");
 			$this->setId($gameid);
 			$this->init();
+			
+			return $this;
 	    }
 	    
 	    public function init()
 	    {
-		    if($this->getId() != -1)
+		    if($this->isInit)
 		    {
-			    $this->loadData();
+			    
 		    }
-		    $this->init = true;
+		    else
+		    {
+			    if($this->getId() != -1)
+			    {
+				    $this->loadData();
+			    }
+			    $this->isInit = true;
+		    }
 	    }
 	    
 	    public function isInit()
@@ -80,21 +88,6 @@
 			{
 				$game = $this->getDb()->fetchSingleById($this->getTable(),$this->getId());
 				parent::loadData($game);
-				$this->firstName = $player['first_name'];
-				$this->lastName = $player['last_name'];
-				$this->playerNumber = $player['number'];
-				$this->email = $player['email'];
-				$this->paid = $player['paid'];
-				$this->twitter = $player['twitter'];
-				$this->groupId = $player['group_id'];
-				$this->group = new Group($this->getDb(), $this->groupId);
-				$this->isIn = $player['is_in'];
-				$this->isBounty = $player['is_bounty'];
-				$this->points = $player['points'];
-				$this->hitId = $player['hit'];
-				$this->hit = new Hit($this->getDb(), $this->hitId);
-				$this->gameId = $player['game_id'];
-				$this->game = $this->getGame();
 			}
 		}
     }

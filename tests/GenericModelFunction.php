@@ -3,7 +3,7 @@
 	ini_set('display_errors', 1);
 	
 	require "../vendor/autoload.php";
-	use Joeybab3\Game\Options;
+	use \Joeybab3\Game\Options;
 	use \Joeybab3\Game\Game;
 	use \Joeybab3\Game\Player;
 	use \Joeybab3\Database\Wrapper as Database;
@@ -12,15 +12,5 @@
 	
 	$D = new Database($options->getDbUsername(),$options->getDbPassword(),$options->getDbName());
 	
-	$game = new Game($D, 1);
-	
-	echo "Game Compiles\n <br/>";
-	
-	$me = new Player($game, 1);
-	
-	echo "Player Compiles\n <br/>";
-
-	$me->loadData();
-	
-	echo "First Name: " . $me->getFirstName() . "<br/>\n";
-	echo "Last Name: " . $me->getLastName() . "<br/>\n";
+	$gm = new \Joeybab3\Game\GenericModel($D);
+	var_dump($gm->getDb());

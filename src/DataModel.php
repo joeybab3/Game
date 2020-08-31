@@ -1,8 +1,9 @@
 <?php
     namespace Joeybab3\Game;
+    
+    use Joeybab3\Game\GenericModel;
+    
     class DataModel extends GenericModel {
-		private $table;
-		public $db = false;
 		protected $game;
 	    
 	    public function __construct($game, $id)

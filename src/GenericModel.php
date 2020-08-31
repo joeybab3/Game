@@ -1,38 +1,35 @@
 <?php
     namespace Joeybab3\Game;
     class GenericModel {
-	    private $id = -1;
-		private $table;
-		private $dbh;
+	    protected $id = -1;
+	    
+		protected $table;
+		protected $dbh;
+		
 		public $db = false;
 		public $loaded = false;
 	    
 	    public function __construct($database, $id = -1)
 	    {
-		    if(!$database->isInit())
-		    {
-			    $this->dbh = $database;
-			    $this->dbh->init();
-		    }
-		    
 		    if($id != -1)
 		    {
 			    $this->setId($id);
 		    }
+		    
+			$this->dbh = $database;
 			
-		    $this->init();
+		    if(!$this->dbh->isInit())
+		    {
+			    $this->dbh->init();
+		    }
+		    
+		    $this->setLoaded(true);
 	    }
 		
 		public function getDb()
 		{
 			return $this->dbh;	
 		}
-	    
-	    public function init()
-	    {
-		    $this->loaded = true;
-		    return true;
-	    }
 	    
 	    public function isLoaded()
 	    {
@@ -67,6 +64,7 @@
 	    public function loadData($object)
 	    {
 		    $this->setId($object['id']);
+		    $this->setLoaded(true);
 	    }
     }
 ?>

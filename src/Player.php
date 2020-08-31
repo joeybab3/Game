@@ -2,26 +2,28 @@
     namespace Joeybab3\Game;
     
     use Joeybab3\Game\Group;
+    use Joeybab3\Game\DataModel;
     
     class Player extends DataModel {
-	    private $firstName;
-	    private $lastName;
-	    private $playerNumber;
-	    private $email;
-	    private $paid;
-	    private $twitter;
-	    private $groupId;
-	    private $group;
-	    private $isAlive;
-	    private $isBounty;
-	    private $points;
-	    private $hitId;
-	    private $hit;
-	    private $gameId;
+	    protected $firstName;
+	    protected $lastName;
+	    protected $playerNumber;
+	    protected $email;
+	    protected $paid;
+	    protected $twitter;
+	    protected $groupId;
+	    protected $group;
+	    protected $isAlive;
+	    protected $isBounty;
+	    protected $points;
+	    protected $hitId;
+	    protected $hit;
+	    protected $gameId;
 	    protected $game;
 	    
 		public function __construct($game, $playerid = -1)
 		{
+			$this->setTable("People");
 			if($game->isInit())
 			{
 				parent::__construct($game, $playerid);
@@ -32,7 +34,7 @@
 				parent::__construct($game, $playerid);
 			}
 			
-		    $this->setTable("People");
+		    
 			$this->setId($playerid);
 			$this->init();
 	    }
@@ -109,6 +111,26 @@
 					$this->game = $this->getGame();
 				}
 			}
+		}
+		
+		public function setFirstName($firstname)
+		{
+			$this->firstName = $firstname;
+		}
+		
+		public function getFirstName()
+		{
+			return $this->firstName;
+		}
+		
+		public function setLastName($lastname)
+		{
+			$this->lastName = $lastname;
+		}
+		
+		public function getLastName()
+		{
+			return $this->lastName;
 		}
     }
 ?>
