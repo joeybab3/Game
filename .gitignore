@@ -1,0 +1,9 @@
+.DS_Store
+vendor
+composer.lock
+composer.phar
+**/create_options.php
+**/options.json
+error_log
+**/.DS_Store
+**/error_log

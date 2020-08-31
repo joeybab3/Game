@@ -1,0 +1,23 @@
+{
+    "name": "joeybab3/game",
+    "type": "library",
+    "description": "Game models",
+    "keywords": ["composer-library","php","game","database"],
+    "homepage": "https://joeybabcock.me",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joey Babcock",
+            "email": "joey_babcock@yahoo.com",
+            "homepage": "http://joeybabcock.me",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"Joeybab3\\Game\\": "src/"}
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "joeybab3/database": "dev-master"
+    }
+}
