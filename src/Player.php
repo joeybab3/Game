@@ -12,14 +12,10 @@
 	    protected $paid;
 	    protected $twitter;
 	    protected $groupId;
-	    protected $group;
 	    protected $isAlive;
 	    protected $isBounty;
 	    protected $points;
 	    protected $hitId;
-	    protected $hit;
-	    protected $gameId;
-	    protected $game;
 	    
 		public function __construct($game, $playerid = -1)
 		{
@@ -49,7 +45,8 @@
 	    
 	    private function createTable()
 	    {
-		    $sql = "CREATE TABLE `People` (
+		    $table = $this->getTable();
+		    $sql = "CREATE TABLE `{$table}` (
 			  `id` int(11) NOT NULL AUTO_INCREMENT,
 			  `number` int(11) NOT NULL,
 			  `first_name` varchar(32) CHARACTER SET latin1 NOT NULL,
@@ -65,6 +62,7 @@
 			  `game_id` int(11) NOT NULL DEFAULT '1',
 			  PRIMARY KEY (`id`)
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+			return $this->getDb()->query($sql);
 		}
 		
 		public function loadData($player = null)
@@ -79,14 +77,12 @@
 				$this->paid = $player['paid'];
 				$this->twitter = $player['twitter'];
 				$this->groupId = $player['group_id'];
-				//$this->group = new Group($this->getDb(), $this->groupId);
 				$this->isIn = $player['is_in'];
 				$this->isBounty = $player['is_bounty'];
 				$this->points = $player['points'];
 				$this->hitId = $player['hit'];
-				//$this->hit = new Hit($this->getDb(), $this->hitId);
-				$this->gameId = $player['game_id'];
-				$this->game = $this->getGame();
+				$this->setGameId($player['game_id']);
+				$this->loadGame();
 			}
 			else
 			{
@@ -101,14 +97,12 @@
 					$this->paid = $player['paid'];
 					$this->twitter = $player['twitter'];
 					$this->groupId = $player['group_id'];
-					//$this->group = new Group($this->getDb(), $this->groupId);
 					$this->isIn = $player['is_in'];
 					$this->isBounty = $player['is_bounty'];
 					$this->points = $player['points'];
 					$this->hitId = $player['hit'];
-					//$this->hit = new Hit($this->getDb(), $this->hitId);
-					$this->gameId = $player['game_id'];
-					$this->game = $this->getGame();
+					$this->setGameId($player['game_id']);
+					$this->loadGame();
 				}
 			}
 		}
@@ -131,6 +125,26 @@
 		public function getLastName()
 		{
 			return $this->lastName;
+		}
+		
+		public function setPlayerNumber($num)
+		{
+			$this->playerNumber = $num;
+		}
+		
+		public function getPlayerNumber()
+		{
+			return $this->playerNumber;
+		}
+		
+		public function setEmail($email)
+		{
+			$this->email = $email;
+		}
+		
+		public function getEmail()
+		{
+			return $this->email;
 		}
     }
 ?>

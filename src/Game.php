@@ -6,7 +6,7 @@
     class Game extends GenericModel {
 	    protected $isInit;
 	    protected $year;
-	    protected $number;
+	    public $number;
 	    
 		public function __construct($database, $gameid = -1)
 		{
