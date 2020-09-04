@@ -6,8 +6,6 @@
     use Joeybab3\Game\DataModel;
     
     class Hit extends DataModel {
-	    protected $gameId;
-	    protected $game;
 	    
 		public function __construct($game, $hitid = -1)
 		{

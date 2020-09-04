@@ -70,14 +70,14 @@
 			if($player != null)
 			{
 				parent::loadData($player);
-				$this->firstName = $player['first_name'];
+				$this->setFirstName($player['first_name']);
 				$this->lastName = $player['last_name'];
 				$this->playerNumber = $player['number'];
 				$this->email = $player['email'];
 				$this->paid = $player['paid'];
 				$this->twitter = $player['twitter'];
 				$this->groupId = $player['group_id'];
-				$this->isIn = $player['is_in'];
+				$this->isAlive = $player['is_in'];
 				$this->isBounty = $player['is_bounty'];
 				$this->points = $player['points'];
 				$this->hitId = $player['hit'];
@@ -90,14 +90,14 @@
 				{
 					$player = $this->getDb()->fetchSingleById($this->getTable(),$this->getId());
 					parent::loadData($player);
-					$this->firstName = $player['first_name'];
+					$this->setFirstName($player['first_name']);
 					$this->lastName = $player['last_name'];
 					$this->playerNumber = $player['number'];
 					$this->email = $player['email'];
 					$this->paid = $player['paid'];
 					$this->twitter = $player['twitter'];
 					$this->groupId = $player['group_id'];
-					$this->isIn = $player['is_in'];
+					$this->isAlive = $player['is_in'];
 					$this->isBounty = $player['is_bounty'];
 					$this->points = $player['points'];
 					$this->hitId = $player['hit'];
@@ -145,6 +145,110 @@
 		public function getEmail()
 		{
 			return $this->email;
+		}
+		
+		public function setPaid($paid)
+		{
+			$this->paid = intval($paid);
+		}
+		
+		public function getPaid()
+		{
+			return boolval($this->paid);
+		}
+		
+		public function setTwitter($twitter)
+		{
+			$this->paid = $twitter;
+		}
+		
+		public function getTwitter()
+		{
+			return $this->twitter;
+		}
+		
+		public function setGroupId($groupid)
+		{
+			$this->groupId = $groupid;
+		}
+		
+		public function getGroupId()
+		{
+			return $this->groupId;
+		}
+		
+		public function setGroup($group)
+		{
+			if($group->isLoaded())
+			{
+				$this->setGroupId($group->getId());
+			}
+			else
+			{
+				$this->setGroupId($group);
+			}
+		}
+		
+		public function getGroup()
+		{
+			return new Group($this->getGame(), $this->getGroupId());
+		}
+		
+		public function setIsAlive($alive)
+		{
+			$this->isAlive = intval($alive);
+		}
+		
+		public function getIsAlive()
+		{
+			return boolval($this->isAlive);
+		}
+		
+		public function setIsBounty($bounty)
+		{
+			$this->isBounty = intval($bounty);
+		}
+		
+		public function getIsBounty()
+		{
+			return boolval($this->isBounty);
+		}
+		
+		public function setPoints($points)
+		{
+			$this->points = $points;
+		}
+		
+		public function getPoints()
+		{
+			return intval($this->points);
+		}
+		
+		public function setHitId($hitid)
+		{
+			$this->hitId = $hitid;
+		}
+		
+		public function getHitId()
+		{
+			return $this->hitId;
+		}
+		
+		public function setHit($hit)
+		{
+			if($hit->isLoaded())
+			{
+				$this->setHitId($hit->getId());
+			}
+			else
+			{
+				$this->setHitId($hit);
+			}
+		}
+		
+		public function getHit()
+		{
+			return new Hit($this->getGame(), $this->getHitId());
 		}
     }
 ?>
