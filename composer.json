@@ -18,6 +18,6 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "joeybab3/database": "dev-master"
+        "joeybab3/database": "^v1.1.3"
     }
 }
