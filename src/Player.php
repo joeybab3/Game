@@ -196,7 +196,7 @@
         
         public function setIsAlive($alive)
         {
-            $this->isAlive = intval($alive);
+            $this->isAlive = boolval($alive);
         }
         
         public function getIsAlive()
@@ -216,7 +216,7 @@
         
         public function setPoints($points)
         {
-            $this->points = $points;
+            $this->points = intval($points);
         }
         
         public function getPoints()

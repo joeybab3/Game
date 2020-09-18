@@ -6,9 +6,17 @@
     
     class Group extends DataModel {
 	    
+	    protected $name;
+        protected $playerId1;
+        protected $playerId2;
+        protected $isAlive;
+        protected $target;
+        protected $points;
+        protected $nc;
+	    
 		public function __construct($game, $groupid = -1)
 		{
-			$this->setTable("People");
+			$this->setTable("group");
 			if($game->isInit())
 			{
 				parent::__construct($game, $groupid);
@@ -51,23 +59,95 @@
 		}
 		
 		public function loadData($group = null)
-		{
-			if($group != null)
-			{
-				parent::loadData($group);
-				$this->setGameId($group['game_id']);
-				$this->loadGame();
-			}
-			else
-			{
-				if($this->getId() != -1)
-				{
-					$group = $this->getDb()->fetchSingleById($this->getTable(),$this->getId());
-					parent::loadData($group);
-					$this->setGameId($group['game_id']);
-					$this->loadGame();
-				}
-			}
-		}
+        {
+            if($group != null)
+            {
+                parent::loadData($group);
+                $this->setName($group['name']);
+                $this->setPlayerId1($group['pid1']);
+                $this->setPlayerId2($group['pid2']);
+                $this->setIsAlive($group['is_in']);
+                $this->setPoints($group['points']);
+                $this->setGameId($group['game_id']);
+                $this->setNC($group['nc']);
+                $this->loadGame();
+            }
+            else
+            {
+                if($this->getId() != -1)
+                {
+                    $group = $this->getDb()->fetchSingleById($this->getTable(),$this->getId());
+                    parent::loadData($group);
+                    $this->setName($group['name']);
+	                $this->setPlayerId1($group['pid1']);
+	                $this->setPlayerId2($group['pid2']);
+	                $this->setIsAlive($group['is_in']);
+	                $this->setPoints($group['points']);
+	                $this->setGameId($group['game_id']);
+	                $this->setNC($group['nc']);
+                    $this->loadGame();
+                }
+            }
+        }
+		
+		public function setName($name)
+        {
+            $this->name = $name;
+        }
+        
+        public function getName()
+        {
+            return $this->name;
+        }
+        
+        public function setPlayerId1($id)
+        {
+            $this->playerId1 = $id;
+        }
+        
+        public function getPlayerId1()
+        {
+            return $this->playerId1;
+        }
+        
+        public function setPlayerId2($id)
+        {
+            $this->playerId1 = $id;
+        }
+        
+        public function getPlayerId2()
+        {
+            return $this->playerId1;
+        }
+        
+        public function setIsAlive($alive)
+        {
+            $this->isAlive = intval($alive);
+        }
+        
+        public function getIsAlive()
+        {
+            return intval($this->isAlive);
+        }
+		
+		public function setPoints($points)
+        {
+            $this->points = intval($points);
+        }
+        
+        public function getPoints()
+        {
+            return intval($this->points);
+        }
+        
+        public function setNC($nc)
+        {
+            $this->nc = $nc;
+        }
+        
+        public function getNC()
+        {
+            return $this->nc;
+        }
     }
 ?>
