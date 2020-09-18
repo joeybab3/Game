@@ -112,12 +112,12 @@
         
         public function setPlayerId2($id)
         {
-            $this->playerId1 = $id;
+            $this->playerId2 = $id;
         }
         
         public function getPlayerId2()
         {
-            return $this->playerId1;
+            return $this->playerId2;
         }
         
         public function setIsAlive($alive)

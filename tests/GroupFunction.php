@@ -23,5 +23,9 @@
 	$me->loadData();
 	
 	echo "Group ID: " . $me->getId() . "<br/>\n";
+	echo "Group Name: " . $me->getName() . "<br/>\n";
+	echo "Group Player 1 ID: " . $me->getPlayerId1() . "<br/>\n";
+	echo "Group Player 2 ID: " . $me->getPlayerId2() . "<br/>\n";
 	echo "Alive: " . intval($me->getIsAlive()) . "<br/>\n";
 	echo "Points: " . $me->getPoints() . "<br/>\n";
+	echo "NC: " . $me->getNC() . "<br/>\n";
