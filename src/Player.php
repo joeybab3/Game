@@ -194,6 +194,22 @@
             return new Group($this->getGame(), $this->getGroupId());
         }
         
+        public function getPartner()
+        {
+            $group = $this->getGroup();
+            $pid1 = $group->getPlayerId1();
+            $pid2 = $group->getPlayerId2();
+            
+            if($this->getId() == $pid1)
+            {
+	            return new Player($this->getGame(), $pid2);
+            }
+            else
+            {
+	            return new Player($this->getGame(), $pid1);
+            }
+        }
+        
         public function setIsAlive($alive)
         {
             $this->isAlive = boolval($alive);

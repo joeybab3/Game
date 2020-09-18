@@ -120,6 +120,26 @@
             return $this->playerId2;
         }
         
+        public function setPlayer1($player)
+        {
+            $this->playerId1 = $player->getId();
+        }
+        
+        public function getPlayer1()
+        {
+            return new Player($this->getGame(), $this->getPlayerId1());
+        }
+        
+        public function setPlayer2($player)
+        {
+            $this->playerId2 = $player->getId();
+        }
+        
+        public function getPlayer2()
+        {
+            return new Player($this->getGame(), $this->getPlayerId2());
+        }
+        
         public function setIsAlive($alive)
         {
             $this->isAlive = intval($alive);
