@@ -34,3 +34,5 @@
 	echo "Alive: " . intval($me->getIsAlive()) . "<br/>\n";
 	echo "Is Bounty: " . intval($me->getIsBounty()) . "<br/>\n";
 	echo "Points: " . $me->getPoints() . "<br/>\n";
+	
+	echo "Partner id: " . $me->getPartner()->getId() . "<br/>";

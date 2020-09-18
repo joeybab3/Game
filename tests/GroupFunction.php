@@ -26,7 +26,12 @@
 	echo "Group Name: " . $me->getName() . "<br/>\n";
 	echo "Group Player 1 ID: " . $me->getPlayerId1() . "<br/>\n";
 	echo "Group Player 2 ID: " . $me->getPlayerId2() . "<br/>\n";
-	echo "Alive: " . intval($me->getIsAlive()) . "<br/>\n";
-	echo "Target: " . intval($me->getTarget()) . "<br/>\n";
+	echo "Alive: " . $me->getIsAlive() . "<br/>\n";
+	echo "Target: " . $me->getTargetEncrypted() . "<br/>\n";
+	echo "Target Decrypted: " . $me->getTargetId() . "<br/>\n";
+	echo "Target getName: " . $me->getTarget()->getName() . "<br/>\n";
 	echo "Points: " . $me->getPoints() . "<br/>\n";
 	echo "NC: " . $me->getNC() . "<br/>\n";
+	
+	echo "Group GetPlayer1ID: " . $me->getPlayer1()->getId() . "<br/>\n";
+	echo "Group GetPlayer2ID: " . $me->getPlayer2()->getId() . "<br/>\n";

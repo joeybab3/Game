@@ -70,6 +70,7 @@
                 $this->setPoints($group['points']);
                 $this->setGameId($group['game_id']);
                 $this->setNC($group['nc']);
+                $this->setTargetEncrypted($group['target']);
                 $this->loadGame();
             }
             else
@@ -85,6 +86,7 @@
 	                $this->setPoints($group['points']);
 	                $this->setGameId($group['game_id']);
 	                $this->setNC($group['nc']);
+	                $this->setTargetEncrypted($group['target']);
                     $this->loadGame();
                 }
             }
@@ -160,14 +162,34 @@
             return intval($this->points);
         }
         
-        public function setTarget($target)
+        public function setTargetEncrypted($target)
         {
             $this->target = $target;
         }
         
-        public function getTarget()
+        public function getTargetEncrypted()
         {
             return $this->target;
+        }
+        
+        public function setTargetId($target)
+        {
+            $this->target = base64_encode($target);
+        }
+        
+        public function getTargetId()
+        {
+            return base64_decode($this->target);
+        }
+        
+        public function setTarget($target)
+        {
+            $this->target = base64_encode($target->getId());
+        }
+        
+        public function getTarget()
+        {
+            return new Group($this->getGame(), base64_decode($this->target));
         }
         
         public function setNC($nc)
