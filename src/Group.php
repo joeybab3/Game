@@ -140,6 +140,16 @@
             return intval($this->points);
         }
         
+        public function setTarget($target)
+        {
+            $this->target = $target;
+        }
+        
+        public function getTarget()
+        {
+            return $this->target;
+        }
+        
         public function setNC($nc)
         {
             $this->nc = $nc;
